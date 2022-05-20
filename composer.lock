@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "edc18d928a472d61749c4c976aaa775c",
+  "content-hash": "152e78768f6f5c26fa2ae653b4bd7c81",
   "packages": [
     {
       "name": "firebase/php-jwt",
@@ -785,6 +785,54 @@
       "time": "2021-12-15T04:27:55+00:00"
     },
     {
+      "name": "topthink/think-multi-app",
+      "version": "v1.0.14",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/top-think/think-multi-app.git",
+        "reference": "ccaad7c2d33f42cb1cc2a78d6610aaec02cea4c3"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/top-think/think-multi-app/zipball/ccaad7c2d33f42cb1cc2a78d6610aaec02cea4c3",
+        "reference": "ccaad7c2d33f42cb1cc2a78d6610aaec02cea4c3",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.1.0",
+        "topthink/framework": "^6.0.0"
+      },
+      "type": "library",
+      "extra": {
+        "think": {
+          "services": [
+            "think\\app\\Service"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "think\\app\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "Apache-2.0"
+      ],
+      "authors": [
+        {
+          "name": "liu21st",
+          "email": "liu21st@gmail.com"
+        }
+      ],
+      "description": "thinkphp6 multi app support",
+      "support": {
+        "issues": "https://github.com/top-think/think-multi-app/issues",
+        "source": "https://github.com/top-think/think-multi-app/tree/master"
+      },
+      "time": "2020-07-12T13:50:37+00:00"
+    },
+    {
       "name": "topthink/think-orm",
       "version": "v2.0.52",
       "source": {
@@ -904,13 +952,7 @@
         "type": "zip",
         "url": "https://api.github.com/repos/top-think/think-view/zipball/edce0ae2c9551ab65f9e94a222604b0dead3576d",
         "reference": "edce0ae2c9551ab65f9e94a222604b0dead3576d",
-        "shasum": "",
-        "mirrors": [
-          {
-            "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-            "preferred": true
-          }
-        ]
+        "shasum": ""
       },
       "require": {
         "php": ">=7.1.0",

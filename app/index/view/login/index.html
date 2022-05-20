@@ -32,6 +32,12 @@
     <link href="/static/css/animate.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
 
+    <link href="/static/lib/pjax/nprogress.min.css" rel="stylesheet">
+    <script src="/static/lib/jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <script src="/static/lib/notify/notify.js"></script>
+    <script src="/static/lib/pjax/nprogress.min.js"></script>
+
 
     <!-- Modernizr JS -->
     <script src="/static/js/modernizr-2.6.2.min.js"></script>
@@ -77,22 +83,35 @@
 </body>
 <script>
     $(function () {
+        // pjax 进度条
+        $(document).on('pjax:start', function () {
+            NProgress.start();
+        }).on('pjax:end', function () {
+            NProgress.done();
+        });
+        // ajax 进度条
+        $(document).ajaxStart(function () {
+            NProgress.start();
+        }).ajaxStop(function () {
+            NProgress.done();
+        })
+
+
         $(".submit").on("click", function () {
             $.ajax({
-                url: "/login/index",
+                url: "{:config('sso.login_url')}",
                 type: "post",
                 data: {
                     username: $("input[name='username']").val(),
                 },
                 dataType: "json",
                 success: function (res) {
+                    notify.destroyAll();
                     if (res.code === 200) {
-                        alert(res.msg);
-                        window.location.href = res.url
+                        window.location.href = '/';
                     } else {
-                        alert(res.msg);
+                        notify.error(res.msg);
                     }
-                    console.log(res)
                 }
             })
         })

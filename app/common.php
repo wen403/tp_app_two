@@ -5,7 +5,7 @@ use Hprose\Client;
 /**
  * @throws Exception
  */
-function rpcClient($controller, $action)
+function rpcClient($controller)
 {
-    return Client::create("http://sso.test/$controller/$action/", false);
+    return Client::create(config('rpc.sso') . '?c=' . $controller, false);
 }
