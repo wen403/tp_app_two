@@ -21,6 +21,18 @@ class Auth
 
         // 验证是否登录
         if (session('?user')) {
+            // 做一个叠加到 10 就验证一次
+            session('sso', session('sso') + 1);
+            if (session('sso') >= 3) {
+                session('sso', 1);
+                // 检查 sso 是否在线
+                $result = rpcClient('Login')->isOnline(session('user.id'));
+                if (!$result) {
+                    session(null);
+                    return redirect(config('sso.login_url'));
+                }
+            }
+
             return $next($request);
         }
 
@@ -30,6 +42,7 @@ class Auth
             $result = json_decode($result, true);
             if ($result['code'] === 200) {
                 session('user', [
+                    'id'       => $result['data']['id'],
                     'username' => $result['data']['username'],
                     'token'    => $result['data']['token'],
                 ]);

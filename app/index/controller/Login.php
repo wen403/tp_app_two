@@ -37,11 +37,14 @@ class Login extends BaseController
             if (isset($token['code']) && $token['code'] == 200) {
                 // 登录成功
                 session('user', [
+                    'id'       => $token['id'],
                     'username' => $data['username'],
                     'token'    => $token['token'],
                 ]);
 
-                return json(['code' => 200, 'msg' => '登录成功']);
+                $url = config('sso.domain') . '/sso/login/index?url=' . config('sso.login_url') . '&token=' . $token['token'];
+
+                return json(['code' => 200, 'msg' => '登录成功', 'url' => $url]);
             } else {
                 // 登录失败
                 return json(['code' => 400, 'msg' => '登录失败']);

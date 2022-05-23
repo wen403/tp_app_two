@@ -108,7 +108,7 @@
                 success: function (res) {
                     notify.destroyAll();
                     if (res.code === 200) {
-                        window.location.href = '/';
+                        window.location.href = res.url;
                     } else {
                         notify.error(res.msg);
                     }
