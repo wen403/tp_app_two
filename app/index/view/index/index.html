@@ -17,7 +17,7 @@
         $(".logout").on("click", function () {
             notify.loading("登出中");
             $.ajax({
-                url: "{:url('logout')}",
+                url: "{:url('login/logout')}",
                 type: "post",
                 dataType: "json",
                 success: function (res) {

@@ -12,7 +12,7 @@ class Login extends BaseController
     public function initialize()
     {
         // 已登录
-        if (session('?user')) {
+        if (session('?user') && request()->action() !== 'logout') {
             // 抛出 http 异常
             throw new HttpResponseException(redirect('/'));
         }
@@ -52,5 +52,12 @@ class Login extends BaseController
         }
 
         return view();
+    }
+
+    public function logout()
+    {
+        session(null);
+
+        return json(['code' => 200, 'msg' => '登出成功！', 'url' => config('sso.domain') . '/sso/login/logout?url=' . config('sso.login_url')]);
     }
 }
